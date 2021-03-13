@@ -11,12 +11,12 @@ Scaling of the model by number of PODs |  Scaling of sequential vs. parallel loc
 
 Aggregated Flexibility bound vs. Optimized Aggregted Flexibility bound |
 :-------------------------:
-![alt text](imgs/qualty_aggr_flex.png)
-![alt text](imgs/qualityopt_flex.png)
+![alt text](imgs/quality_aggr_flex.png)
+![alt text](imgs/quality_opt_flex.png)
 
 Mean Optimized Profit |
 :-------------------------:|
-![alt text](imgs/quality_proft.png)|
+![alt text](imgs/quality_profit.png)|
 
 
 
