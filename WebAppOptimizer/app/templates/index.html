@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block jumbotron_content %}
+    <div class="jumbotron" style="size: auto">
+        <h1>{{ _('Hi, %(username)s!', username=current_user.username) }}</h1>
+
+        <ul class="left">
+                <a href="{{ url_for('core.first_step')  }}">
+                    <p class="lead">Start Optimization</p>
+                </a>
+        </ul>
+    </div>
+{% endblock %}
+
+{% block app_content %}
+    <div class="container">
+    </div>
+
+
+{% endblock %}

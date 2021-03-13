@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+    <table class="table table-hover">
+        <tr>
+            <td width="256px"><img src="{{ user.avatar(256) }}"></td>
+            <td>
+                <h1>{{ _('User') }}: {{ user.username }}</h1>
+                {% if user.about_me %}<p>{{ user.about_me }}</p>{% endif %}
+                {% if user.last_seen %}
+                <p>{{ _('Last seen on') }}: {{ moment(user.last_seen).format('LLL') }}</p>
+                {% endif %}
+                {% if user == current_user %}
+                <p><a href="{{ url_for('core.edit_profile') }}">{{ _('Edit your profile') }}</a></p>
+                {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <table class="table table-striped">
+            {% for conf in configurations %}
+                <tr>
+                    <td width="70px">
+                        <a href="{{ url_for('core.user', username=conf.user.username) }}">
+                            <img src="{{ conf.user.avatar(70) }}" />
+                        </a>
+                        {% set user_link %}
+                            <a href="{{ url_for('core.user', username=conf.user.username) }}">
+                                {{ conf.user.username }}
+                            </a>
+                        {% endset %}
+                    </td>
+                    <td>
+
+                        <b>{{ conf.confname }}</b> -
+                        <i> {{ moment(conf.timestamp).fromNow() }}</i>
+                        <br>
+                        <span id="conf{{ conf.id }}">Date: {{ conf.datetime }}<br><br>Configuration:<br>{{ conf.body }}</span>
+                    </td>
+                    <td width="70px">
+                        {% if user == current_user %}
+                        <p>
+                            <form method="post" action="{{ url_for('core.delete_config', conf_id=conf.id, username=conf.user.username) }}">
+                            {{ form.submit(class="btn btn-default get-profile", value="Delete") }}
+                            </form>
+                            </p>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </table>
+        </tr>
+        <tr>
+            <nav aria-label="...">
+                <ul class="pager">
+                    <li class="previous{% if not prev_url %} disabled{% endif %}">
+                        <a href="{{ prev_url or '#' }}">
+                            <span aria-hidden="true">&larr;</span> {{ _('Previous page') }}
+                        </a>
+                    </li>
+                    <li class="next{% if not next_url %} disabled{% endif %}">
+                        <a href="{{ next_url or '#' }}">
+                            {{ _('Next page') }} <span aria-hidden="true">&rarr;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </tr>
+    </table>
+{% endblock %}

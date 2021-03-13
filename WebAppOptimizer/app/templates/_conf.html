@@ -1,0 +1,29 @@
+    <table class="table table-striped">
+        <tr>
+            <td width="70px">
+                <a href="{{ url_for('core.user', username=conf.user.username) }}">
+                    <img src="{{ conf.user.avatar(70) }}" />
+                </a>
+            </td>
+            <td>
+                {% set user_link %}
+                    <a href="{{ url_for('core.user', username=conf.user.username) }}">
+                        {{ conf.user.username }}
+                    </a>
+                {% endset %}
+                {{ _('%(confname)s  -  %(when)s',
+                    confname=conf.confname, when=moment(conf.timestamp).fromNow()) }}
+                <br>
+                <span id="conf{{ conf.id }}">{{ conf.body }} {{ conf.datetime }}</span>
+            </td>
+            <td width="70px">
+                {% if user == current_user %}
+                <p>
+                    <form method="post" action="{{ url_for('core.delete_config', conf_id=conf.id, username=conf.user.username) }}">
+                    {{ form.submit(value="Delete") }}
+                    </form>
+                    </p>
+                {% endif %}
+            </td>
+        </tr>
+    </table>

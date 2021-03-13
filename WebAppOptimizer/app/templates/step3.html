@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block jumbotron_content %}
+    <div class="jumbotron" style="size: auto">
+        <h3>{{ _('Step 3:', username=current_user.username) }}</h3>
+        <p class="lead"></p>
+        <p class="lead"> 1. Run Local Optimizations where necessary</p>
+        <p class="lead">2. Run Aggregated Optimization </p>
+    </div>
+{% endblock %}
+
+{% block app_content %}
+    <div class="container">
+
+        <form method="POST">
+        {{ form.hidden_tag() }}
+            <div class="row">
+                <p>
+                    <div class="col-md-2">
+                        {{ form.submit1(class="btn btn-default get-local-optimization", value="Resolve Pods", onclick="$('#loading').show();") }}
+                    </div>
+                </p>
+            </div>
+
+            <div class ="row" id="loading" style="display:none;">
+                <p>
+                    <img src="loading.gif" alt="Loading!" />
+                </p>
+            </div>
+
+            <div>
+                <p>
+                    <table class="table table-striped">
+                        <b>{{ form.table_title.data }}</b>
+                        <tr>
+                            <th> Configuration </th>
+                            <th> Composition </th>
+                            <th> Time for minimization(s) </th>
+                            <th> Time for maximization(s) </th>
+                        </tr>
+                        {% for row in form.local_rows %}
+                        <tr>
+                            <td>{{ row.configuration.data }}</td>
+                            <td>{{ row.composition.data }}</td>
+                            <td>{{ row.min_time.data }}</td>
+                            <td>{{ row.max_time.data }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </p>
+            </div>
+            <br>
+            <div class="row">
+                <p>
+                    <div class="col-md-2">
+                        {{ form.submit2(class="btn btn-default get-aggregation", value="Aggregate", onclick="$('#loading2').show();") }}
+                    </div>
+                </p>
+            </div>
+            <div id="loading2" style="display:none;">
+                <img src="loading.gif" alt="Loading!" />
+            </div>
+            <div>
+                <p>
+                    <table class="table table-striped">
+                        <b>{{ form.table_title.data }}<b>
+                        <tr>
+                            <th> Single PODs </th>
+                            <th> Mixed PODs </th>
+                            <th> Time for Local Optimization (s) </th>
+                            <th> Time for Aggregated Optimization (s) </th>
+                            <th> Total (s) </th>
+                        </tr>
+                        {% for row in form.aggr_rows %}
+                        <tr>
+                            <td>{{ row.single.data }}</td>
+                            <td>{{ row.mixed.data }}</td>
+                            <td>{{ row.local_time.data }}</td>
+                            <td>{{ row.aggr_time.data }}</td>
+                            <td>{{ row.tot_time.data }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </p>
+            </div>
+            <br>
+            <div>
+            {% for img in images %}
+                <img src="{{ img }}"/>
+            {% endfor %}
+            </div>
+        </form>
+        <div class="row">
+            <ul class="list-inline pull-right">
+                <li><a href={{ prev_url }}><button type="button" class="btn btn-default prev-step">Previous</button></a></li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
