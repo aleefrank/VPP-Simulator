@@ -4,17 +4,19 @@ The aim of this work was to create an intelligent resource management system tha
 The first level deals with the local optimization of the distributed energy resources in the system. The second, aggregates local results and performs further optimization based on price fluctuations in the energy market.
 Moreover, the model has been developed in order to be available as a web service and a dedicated application has been developed for ease of use.
 
-Scaling of the model by number of PODs |  Scaling of sequential vs. parallel local optimizations by number of PODs
+Scaling of the model by number of PODs |  Sequential vs. parallel local optimizations by number of PODs
 :-------------------------:|:-------------------------:
 ![alt text](imgs/scaling_table.png)  |  ![alt text](imgs/scaling_graph.png)
 
 
 Aggregated Flexibility bound vs. Optimized Aggregted Flexibility bound |
 :-------------------------:
-![alt text](imgs/quality_aggr_flex.png)|
-![alt text](imgs/quality_opt_flex.png)|
-Mean Optimized Profit|
-![alt text](imgs/quality_profit.png)|
+![alt text](imgs/quality_aggr_flex.png)
+![alt text](imgs/quality_opt_flex.png)
+
+Mean Optimized Profit |
+:-------------------------:
+![alt text](imgs/quality_profit.png)
 
 
 
