@@ -1,9 +1,12 @@
 # VirtualPowerPlant-Simulator
+Computer Engineering Master Thesis project *"Integration of Local and AggregatedOptimization for the Virtual Management ofDistributed Energy Resources"* University of Bologna.
+
 Growing environmental awareness has led to a large growth in renewable energy technologies in recent years. The share of energy generation from renewable sources will increase dramatically in the coming years: therefore, it becomes more and more important to find effective solutions to better manage the generated energy. For this reason, and also thanks to technological progress, the concept of Virtual Power Plant is brought to life: an aggregation of decentralized generation, storage and consumption units coordinated by a central control system. The purpose of Virtual Power Plant is to resell in electricity markets, exploiting the flexibility of the aggregate of plants. 
 The aim of this work was to create an intelligent resource management system that can be integrated into a VPP environment. This involves an optimization on two levels.
 The first level deals with the local optimization of the distributed energy resources in the system. The second, aggregates local results and performs further optimization based on price fluctuations in the energy market.
 Moreover, the model has been developed in order to be available as a web service and a dedicated application has been developed for ease of use.
 
+## Results
 Scaling of the model by number of PODs |  Sequential vs. parallel local optimizations by number of PODs
 :-------------------------:|:-------------------------:
 ![alt text](imgs/scaling_table.png)  |  ![alt text](imgs/scaling_graph.png)
